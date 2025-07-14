@@ -3,3 +3,75 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+
+# ========================================
+# GLOBAL
+# ========================================
+
+# OS-spezifisch
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*~
+
+# IDEs
+.idea/
+.vscode/
+
+# Git
+*.orig
+
+# Logs & Temporäre Dateien
+*.log
+*.tmp
+*.bak
+*.swp
+*.~*
+
+# ========================================
+# Angular (ClientApp)
+# ========================================
+
+ClientApp/node_modules/
+ClientApp/dist/
+ClientApp/.angular/
+ClientApp/.angular-cache/
+ClientApp/.env
+ClientApp/.env.*.local
+ClientApp/npm-debug.log*
+ClientApp/yarn-error.log
+
+# ========================================
+# .NET (Beerwar)
+# ========================================
+
+Beerwar/bin/
+Beerwar/obj/
+Beerwar/.vs/
+Beerwar/ScaffoldingReadMe.txt
+Beerwar/Migrations/
+
+# Benutzer- & Cache-Dateien
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+mono_crash.*
+**/.dotnet-watch.json
+
+# Konfigs und Secrets (falls nicht bewusst versioniert)
+Beerwar/appsettings.Development.json
+Beerwar/appsettings.json
+
+Beerwar/appsettings.Local.json
+Beerwar/secrets.json
+
+# Azure Deployment
+Beerwar/.publish/
+Beerwar/*.azurepubxml
+
+# ========================================
+# Optional: global.json
+global.json
