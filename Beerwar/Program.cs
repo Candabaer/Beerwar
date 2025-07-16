@@ -17,6 +17,8 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+//app.UseHttpsRedirection();
+app.UseRouting();
 app.UseCors();
 
 // Configure the HTTP request pipeline.
@@ -26,7 +28,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 
 var summaries = new[]
 {

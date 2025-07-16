@@ -1,19 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { WeatherService, WeatherForecastModel } from '@services/weather.service';
+import {Component, OnInit} from '@angular/core';
+import {WeatherService, WeatherForecastModel} from '@services/weather.service';
 
 @Component({
   selector: 'app-weather',
-  templateUrl: './weather.component.html',
-  styleUrls: ['./weather.component.scss']
+  templateUrl: './weather.html',
+  styleUrls: ['./weather.scss']
 })
-export class WeatherComponent implements OnInit {
-  forecasts: WeatherForecastModel[] = [];
+export class Weather implements OnInit {
+  public forecasts: WeatherForecastModel[] = [];
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(private weatherService: WeatherService) {
+  }
 
-  ngOnInit(): void {
-    this.weatherService.getForecast().subscribe(data => {
-      this.forecasts = data;
-    });
+  ngOnInit() {
+    this.loadForecasts();
+  }
+
+  private async loadForecasts(): Promise<void> {
+    try {
+      this.forecasts = await this.weatherService.getForecast();
+    } catch (error) {
+      console.error('Fehler beim Laden:', error);
+    }
   }
 }

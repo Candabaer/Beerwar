@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment  } from '@environment';
 import { Observable } from 'rxjs';
 
 export interface WeatherForecastModel {
@@ -13,12 +14,16 @@ export interface WeatherForecastModel {
   providedIn: 'root'
 })
 export class WeatherService {
-  private apiUrl = 'http://localhost:5000/weatherforecast';
+  private endpoint = '/weatherforecast';
 
   constructor(private http: HttpClient) {}
 
-  getForecast(): Observable<WeatherForecastModel[]> {
-    return this.http.get<WeatherForecastModel[]>(this.apiUrl);
+  async getForecast(): Promise<WeatherForecastModel[]> {
+    const response = await fetch(environment.apiBaseUrl + this.endpoint);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
   }
 
 }

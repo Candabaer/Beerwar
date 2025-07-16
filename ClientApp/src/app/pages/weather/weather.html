@@ -1,1 +1,16 @@
 <p>weather works!</p>
+
+@if (forecasts.length === 0) {
+  <div>
+    Lade Wetterdaten...
+  </div>
+}
+@if (forecasts.length > 0) {
+  <ul>
+    @for (f of forecasts; track f) {
+      <li>
+        {{ f.date }} - {{ f.temperatureC }}°C - {{ f.summary }}
+      </li>
+    }
+  </ul>
+}
