@@ -5,12 +5,12 @@ namespace Beerwar.Services;
 
 public class EloSystem : IRatingSystem
 {
-    public void ExpectedValue(MatchMakingModel match)
+    public void ExpectedValue(Match match)
     {
         throw new NotImplementedException();
     }
 
-    public void UpdateScore(MatchMakingModel match)
+    public void UpdateScore(Match match)
     {
         throw new NotImplementedException();
     }

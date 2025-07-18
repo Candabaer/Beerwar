@@ -4,5 +4,7 @@ namespace Beerwar.Services.Interfaces;
 
 public interface IMatchMaking
 {
-    MatchMakingModel GetMatch();
+    Match CreateMatch();
+    void UpdateMatch(Match match, Beer winner);
+    Match GetMatch(int id);
 }
