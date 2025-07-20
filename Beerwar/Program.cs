@@ -1,4 +1,7 @@
 using Beerwar.Database;
+using Beerwar.Services;
+using Beerwar.Services.Interfaces;
+using Beerwar.Services.Interfaces.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +20,8 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
     });
 });
+builder.Services.AddSingleton<IRatingSystem, EloSystem>();
+builder.Services.AddSingleton<IMatchMaking, MatchMaker>();
 
 builder.Services.AddDbContext<BeerwarContext>(options =>
 {

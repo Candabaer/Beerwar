@@ -1,10 +1,11 @@
 using Beerwar.Database;
 using Beerwar.Model;
 using Beerwar.Services.Interfaces;
+using Beerwar.Services.Interfaces.Services;
 
 namespace Beerwar.Services;
 
-public class MatchMaker(BeerwarContext context) : IMatchMaking
+public class MatchMaker(BeerwarContext context, IRatingSystem ratingSystem) : IMatchMaking
 {
     public Match CreateMatch()
     {
@@ -26,7 +27,9 @@ public class MatchMaker(BeerwarContext context) : IMatchMaking
     public void UpdateMatch(Match match, Beer winner)
     {
         match.WinnerId = winner.Id;
+        ratingSystem.UpdateScore(match);
         context.MatchMaking.Update(match);
+        
         context.SaveChanges();
     }
 }

@@ -5,13 +5,16 @@ namespace Beerwar.Services;
 
 public class EloSystem : IRatingSystem
 {
-    public void ExpectedValue(Match match)
+    public double ExpectedValue(Match match)
     {
-        throw new NotImplementedException();
+        var exponent = (match.BeerTwo.Rating - match.BeerOne.Rating) / 400;
+        var denominator = 1+ Math.Pow(10,exponent);
+        return 1 / denominator;
     }
 
     public void UpdateScore(Match match)
     {
-        throw new NotImplementedException();
+        match.GetWinner().Rating += 10;
+        match.GetLoser().Rating -= 10;
     }
 }

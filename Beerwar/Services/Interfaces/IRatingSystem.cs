@@ -4,6 +4,6 @@ namespace Beerwar.Services.Interfaces.Services;
 
 public interface IRatingSystem
 {
-    void ExpectedValue(Match match);
+    double ExpectedValue(Match match);
     void UpdateScore(Match match);
 }
