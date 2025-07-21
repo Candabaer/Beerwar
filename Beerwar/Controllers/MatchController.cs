@@ -16,7 +16,8 @@ public class MatchController(IMatchMaking matchMaking, IRatingSystem ratingSyste
     {
         Match match = matchMaking.CreateMatch();
         dbContext.MatchMaking.Add(match);
-        match.ExpectedWinrateBeerOne = ratingSystem.ExpectedValue(match);
+        match.ExpectedWinProbability = ratingSystem.ExpectedValue(match);
+        match.ExpectedLoseProbability = 1 - match.ExpectedWinProbability;
         await dbContext.SaveChangesAsync();
         return Ok(match);
     }

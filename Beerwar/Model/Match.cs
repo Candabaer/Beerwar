@@ -19,23 +19,20 @@ public class Match
     public int? WinnerId { get; set; } = null;
     public int? RatingChange { get; set; }
 
+    public double ExpectedWinProbability { get; set; }
+    public double ExpectedLoseProbability { get; set; }
     public int DuelantOneId { get; init; }
-    public Beer BeerOne { get; init; } = null!;
+    public Beer BeerOne { get; init; }
+    
     public int DuelantTwoId { get; init; }
-    public Beer BeerTwo { get; init; } = null!;
-    public double ExpectedWinrateBeerOne;
+    public Beer BeerTwo { get; init; } 
 
-    public Beer GetWinner()
+    public Beer GetWinner(bool getWinner)
     {
         if (WinnerId == null)
             throw new InvalidOperationException("Winner id is null, meaning its not defined at the moment");
-        return WinnerId == DuelantOneId ? BeerOne : BeerTwo;
-    }
-
-    public Beer GetLoser()
-    {
-        if (WinnerId == null)
-            throw new InvalidOperationException("Winner id is null, meaning its not defined at the moment");
+        if (getWinner)
+            return WinnerId == DuelantOneId ? BeerOne : BeerTwo;
         return WinnerId == DuelantOneId ? BeerTwo : BeerOne;
     }
 }

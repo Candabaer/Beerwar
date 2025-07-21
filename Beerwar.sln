@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beerwar", "Beerwar\Beerwar.csproj", "{8A6D4ABB-0DB3-41C1-AA3D-770AB7DB737E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerWarTests", "BeerWarTests\BeerWarTests.csproj", "{631E54C7-97D7-462F-A1DF-FEADDE31517E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{8A6D4ABB-0DB3-41C1-AA3D-770AB7DB737E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A6D4ABB-0DB3-41C1-AA3D-770AB7DB737E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A6D4ABB-0DB3-41C1-AA3D-770AB7DB737E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{631E54C7-97D7-462F-A1DF-FEADDE31517E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{631E54C7-97D7-462F-A1DF-FEADDE31517E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{631E54C7-97D7-462F-A1DF-FEADDE31517E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{631E54C7-97D7-462F-A1DF-FEADDE31517E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
