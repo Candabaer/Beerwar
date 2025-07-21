@@ -1,6 +1,6 @@
 namespace Beerwar.Model;
 
-public class BeerModel
+public class Beer
 {
     public int Id { get; init; }
     
