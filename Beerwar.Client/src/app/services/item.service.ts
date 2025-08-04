@@ -14,8 +14,8 @@ export interface ItemModel {
   providedIn: 'root'
 })
 export class ItemService {
-  private getMatchURL = '/duel';
-  private setWinnerURL = '/duel';
+  private getMatchURL = '/api/Match/create';
+  private setWinnerURL = '/api/Match/finalize';
 
   constructor(private http: HttpClient) {}
 

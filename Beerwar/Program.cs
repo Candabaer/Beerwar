@@ -20,8 +20,10 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
     });
 });
-builder.Services.AddSingleton<IRatingSystem, EloSystem>();
-builder.Services.AddSingleton<IMatchMaking, MatchMaker>();
+builder.Services.AddScoped<IRatingSystem, EloSystem>();
+builder.Services.AddScoped<IMatchMaking, MatchMaker>();
+
+builder.Services.AddControllers();
 
 builder.Services.AddDbContext<BeerwarContext>(options =>
 {
@@ -32,6 +34,8 @@ var app = builder.Build();
 //app.UseHttpsRedirection();
 app.UseRouting();
 app.UseCors();
+
+app.MapControllers();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

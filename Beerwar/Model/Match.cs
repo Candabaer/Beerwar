@@ -4,7 +4,8 @@ namespace Beerwar.Model;
 
 public class Match
 {
-    public Match(Beer beerOne, Beer beerTwo)
+    public Match() { }
+	public Match(Beer beerOne, Beer beerTwo)
     {
         DuelantOneId = beerOne.Id;
         DuelantTwoId = beerTwo.Id;

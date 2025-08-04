@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {ItemModel, ItemService} from '@services/item.service';
 
 @Component({
@@ -7,7 +7,7 @@ import {ItemModel, ItemService} from '@services/item.service';
   templateUrl: './item-battle.html',
   styleUrl: './item-battle.scss'
 })
-export class ItemBattle {
+export class ItemBattle implements OnInit {
   public items: ItemModel[] = [];
   constructor(private itemService: ItemService) {}
   ngOnInit() {
@@ -15,7 +15,6 @@ export class ItemBattle {
   }
 
   async getDuelantsForPage(): Promise<void> {
-    await this.itemService.getDuelants();
-
+    this.items = await this.itemService.getDuelants();
   }
 }

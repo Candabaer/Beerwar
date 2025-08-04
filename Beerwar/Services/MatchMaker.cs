@@ -13,8 +13,6 @@ public class MatchMaker(BeerwarContext context, IRatingSystem ratingSystem) : IM
         Beer contestantTwo = context.Beers
             .OrderBy(b => b.MatchParticipation).FirstOrDefault(b => b.Id != contestantOne.Id)!;
         Match result = new Match(contestantOne, contestantTwo);
-        context.MatchMaking.Add(result);
-        context.SaveChanges();
         
         return result;
     }
