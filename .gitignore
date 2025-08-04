@@ -75,3 +75,4 @@ Beerwar/*.azurepubxml
 # ========================================
 # Optional: global.json
 global.json
+/.vs
