@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ItemModel, ItemService} from '@services/item.service';
+import { ItemModel, ItemService } from '@services/item.service';
+import { environment } from '@environment';
 
 @Component({
   selector: 'app-item-battle',
@@ -9,7 +10,9 @@ import {ItemModel, ItemService} from '@services/item.service';
 })
 export class ItemBattle implements OnInit {
   public items: ItemModel[] = [];
-  constructor(private itemService: ItemService) {}
+
+  constructor(private itemService: ItemService) {
+  }
   ngOnInit() {
     this.getDuelantsForPage();
   }

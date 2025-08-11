@@ -10,9 +10,10 @@ namespace Beerwar.Controllers;
 [Route("api/[controller]")]
 public class MatchController(IMatchMaking matchMaking, IRatingSystem ratingSystem, BeerwarContext dbContext) : ControllerBase
 {
+	
     // GET
     [HttpGet("create")]
-    public async Task<IActionResult> CreateMatch()
+    public async Task<ActionResult<Match>> CreateMatch()
     {
         Match match = matchMaking.CreateMatch();
         dbContext.MatchMaking.Add(match);
