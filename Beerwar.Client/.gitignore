@@ -7,7 +7,7 @@
 /bazel-out
 /obj
 /obj\Debug
-
+obj\\Debug/
 #
 
 
