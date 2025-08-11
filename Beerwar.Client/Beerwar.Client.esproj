@@ -7,4 +7,21 @@
     <!-- Folder where production build objects will be placed -->
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\Beerwar.Client\browser\</BuildOutputFolder>
   </PropertyGroup>
+  <ItemGroup>
+    <!-- Angular Source Files -->
+    <Content Include="src\**\*" />
+    <Content Include="public\**\*" />
+
+    <!-- Konfigurations- und Projektdateien -->
+    <None Include="angular.json" />
+    <None Include="package.json" />
+    <None Include="package-lock.json" />
+    <None Include="tsconfig.json" />
+    <None Include="tsconfig.app.json" />
+    <None Include="tsconfig.spec.json" />
+    <None Include="karma.conf.js" />
+    <None Include="README.md" />
+    <None Include="CHANGELOG.md" />
+  </ItemGroup>
+
 </Project>
