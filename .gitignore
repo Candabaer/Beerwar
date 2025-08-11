@@ -76,3 +76,4 @@ Beerwar/*.azurepubxml
 # Optional: global.json
 global.json
 /.vs
+Beerwar.Client/obj\Debug
