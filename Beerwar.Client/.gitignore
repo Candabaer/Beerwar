@@ -5,6 +5,11 @@
 /tmp
 /out-tsc
 /bazel-out
+/obj
+/obj\Debug
+
+#
+
 
 # Node
 /node_modules
