@@ -55,7 +55,7 @@ export class Client {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     finalize(body: MatchWinner | undefined): Promise<void> {
@@ -97,6 +97,8 @@ export class MatchData implements IMatchData {
     beerOneId!: number;
     beerTwoId!: number;
     matchId!: string;
+    imageUrlOne!: string;
+    imageUrlTwo!: string;
 
     constructor(data?: IMatchData) {
         if (data) {
@@ -112,6 +114,8 @@ export class MatchData implements IMatchData {
             this.beerOneId = _data["beerOneId"];
             this.beerTwoId = _data["beerTwoId"];
             this.matchId = _data["matchId"];
+            this.imageUrlOne = _data["imageUrlOne"];
+            this.imageUrlTwo = _data["imageUrlTwo"];
         }
     }
 
@@ -127,6 +131,8 @@ export class MatchData implements IMatchData {
         data["beerOneId"] = this.beerOneId;
         data["beerTwoId"] = this.beerTwoId;
         data["matchId"] = this.matchId;
+        data["imageUrlOne"] = this.imageUrlOne;
+        data["imageUrlTwo"] = this.imageUrlTwo;
         return data;
     }
 }
@@ -135,6 +141,8 @@ export interface IMatchData {
     beerOneId: number;
     beerTwoId: number;
     matchId: string;
+    imageUrlOne: string;
+    imageUrlTwo: string;
 }
 
 export class MatchWinner implements IMatchWinner {

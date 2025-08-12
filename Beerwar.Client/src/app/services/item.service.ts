@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environment';
 import { Observable } from 'rxjs';
-import {Client, MatchData} from '@api/matchclient';
+import { Client, MatchData } from '@api/matchclient';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +16,7 @@ export class ItemService {
     this.client = new Client(environment.apiBaseUrl);
   }
 
-  async getDuelants() {
-
-    var x : MatchData = await this.client.create();
-
+  async getDuelants(): Promise<MatchData> {
+    return this.client.create();
   }
-
-
 }
