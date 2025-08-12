@@ -1,7 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Beerwar.DTO;
 
 public class MatchWinner
 {
-    public int MatchId { get; set; }
+    [Required]
+    public Guid MatchId { get; set; }
+    [Required]
     public int WinnerId { get; set; }
 }

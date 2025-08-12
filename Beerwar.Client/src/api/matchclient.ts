@@ -20,7 +20,7 @@ export class Client {
     /**
      * @return Success
      */
-    create(): Promise<Match> {
+    create(): Promise<MatchData> {
         let url_ = this.baseUrl + "/api/Match/create";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -36,14 +36,14 @@ export class Client {
         });
     }
 
-    protected processCreate(response: Response): Promise<Match> {
+    protected processCreate(response: Response): Promise<MatchData> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = Match.fromJS(resultData200);
+            result200 = MatchData.fromJS(resultData200);
             return result200;
             });
         } else if (status !== 200 && status !== 204) {
@@ -51,11 +51,11 @@ export class Client {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<Match>(null as any);
+        return Promise.resolve<MatchData>(null as any);
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     finalize(body: MatchWinner | undefined): Promise<void> {
@@ -93,15 +93,12 @@ export class Client {
     }
 }
 
-export class Beer implements IBeer {
-    id?: number;
-    name?: string | undefined;
-    description?: string | undefined;
-    imageSource?: string | undefined;
-    rating?: number;
-    matchParticipation?: number;
+export class MatchData implements IMatchData {
+    beerOneId!: number;
+    beerTwoId!: number;
+    matchId!: string;
 
-    constructor(data?: IBeer) {
+    constructor(data?: IMatchData) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -112,118 +109,37 @@ export class Beer implements IBeer {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
-            this.description = _data["description"];
-            this.imageSource = _data["imageSource"];
-            this.rating = _data["rating"];
-            this.matchParticipation = _data["matchParticipation"];
+            this.beerOneId = _data["beerOneId"];
+            this.beerTwoId = _data["beerTwoId"];
+            this.matchId = _data["matchId"];
         }
     }
 
-    static fromJS(data: any): Beer {
+    static fromJS(data: any): MatchData {
         data = typeof data === 'object' ? data : {};
-        let result = new Beer();
+        let result = new MatchData();
         result.init(data);
         return result;
     }
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        data["description"] = this.description;
-        data["imageSource"] = this.imageSource;
-        data["rating"] = this.rating;
-        data["matchParticipation"] = this.matchParticipation;
+        data["beerOneId"] = this.beerOneId;
+        data["beerTwoId"] = this.beerTwoId;
+        data["matchId"] = this.matchId;
         return data;
     }
 }
 
-export interface IBeer {
-    id?: number;
-    name?: string | undefined;
-    description?: string | undefined;
-    imageSource?: string | undefined;
-    rating?: number;
-    matchParticipation?: number;
-}
-
-export class Match implements IMatch {
-    id?: number;
-    date?: Date;
-    winnerId?: number | undefined;
-    ratingChange?: number | undefined;
-    expectedWinProbability?: number;
-    expectedLoseProbability?: number;
-    duelantOneId?: number;
-    beerOne?: Beer;
-    duelantTwoId?: number;
-    beerTwo?: Beer;
-
-    constructor(data?: IMatch) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (this as any)[property] = (data as any)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.date = _data["date"] ? new Date(_data["date"].toString()) : undefined as any;
-            this.winnerId = _data["winnerId"];
-            this.ratingChange = _data["ratingChange"];
-            this.expectedWinProbability = _data["expectedWinProbability"];
-            this.expectedLoseProbability = _data["expectedLoseProbability"];
-            this.duelantOneId = _data["duelantOneId"];
-            this.beerOne = _data["beerOne"] ? Beer.fromJS(_data["beerOne"]) : undefined as any;
-            this.duelantTwoId = _data["duelantTwoId"];
-            this.beerTwo = _data["beerTwo"] ? Beer.fromJS(_data["beerTwo"]) : undefined as any;
-        }
-    }
-
-    static fromJS(data: any): Match {
-        data = typeof data === 'object' ? data : {};
-        let result = new Match();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["date"] = this.date ? this.date.toISOString() : undefined as any;
-        data["winnerId"] = this.winnerId;
-        data["ratingChange"] = this.ratingChange;
-        data["expectedWinProbability"] = this.expectedWinProbability;
-        data["expectedLoseProbability"] = this.expectedLoseProbability;
-        data["duelantOneId"] = this.duelantOneId;
-        data["beerOne"] = this.beerOne ? this.beerOne.toJSON() : undefined as any;
-        data["duelantTwoId"] = this.duelantTwoId;
-        data["beerTwo"] = this.beerTwo ? this.beerTwo.toJSON() : undefined as any;
-        return data;
-    }
-}
-
-export interface IMatch {
-    id?: number;
-    date?: Date;
-    winnerId?: number | undefined;
-    ratingChange?: number | undefined;
-    expectedWinProbability?: number;
-    expectedLoseProbability?: number;
-    duelantOneId?: number;
-    beerOne?: Beer;
-    duelantTwoId?: number;
-    beerTwo?: Beer;
+export interface IMatchData {
+    beerOneId: number;
+    beerTwoId: number;
+    matchId: string;
 }
 
 export class MatchWinner implements IMatchWinner {
-    matchId?: number;
-    winnerId?: number;
+    matchId!: string;
+    winnerId!: number;
 
     constructor(data?: IMatchWinner) {
         if (data) {
@@ -257,12 +173,12 @@ export class MatchWinner implements IMatchWinner {
 }
 
 export interface IMatchWinner {
-    matchId?: number;
-    winnerId?: number;
+    matchId: string;
+    winnerId: number;
 }
 
 export class ApiException extends Error {
-    message: string;
+    override message: string;
     status: number;
     response: string;
     headers: { [key: string]: any; };

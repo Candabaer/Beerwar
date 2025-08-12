@@ -13,14 +13,14 @@ public class MatchController(IMatchMaking matchMaking, IRatingSystem ratingSyste
 	
     // GET
     [HttpGet("create")]
-    public async Task<ActionResult<Match>> CreateMatch()
+    public async Task<ActionResult<MatchData>> CreateMatch()
     {
         Match match = matchMaking.CreateMatch();
         dbContext.MatchMaking.Add(match);
         match.ExpectedWinProbability = ratingSystem.ExpectedValue(match);
         match.ExpectedLoseProbability = 1 - match.ExpectedWinProbability;
         await dbContext.SaveChangesAsync();
-        return Ok(match);
+        return Ok(new MatchData(match));
     }
     
     [HttpPost("finalize")]

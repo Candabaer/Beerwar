@@ -40,7 +40,7 @@ public class BeerwarContext(DbContextOptions<BeerwarContext> options) : DbContex
             new Beer { Id = 27, Name = "Schmucker", Rating = 1500, MatchParticipation = 0, ImageSource = "schmuck" },
             new Beer { Id = 28, Name = "Öttinger", Rating = 1500, MatchParticipation = 0, ImageSource = "ott" }
         );
-
+        
         modelBuilder.Entity<Match>()
             .HasOne(m => m.BeerOne)
             .WithMany()

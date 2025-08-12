@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemModel, ItemService } from '@services/item.service';
+import { ItemService } from '@services/item.service';
 import { environment } from '@environment';
 
 @Component({
@@ -9,7 +9,6 @@ import { environment } from '@environment';
   styleUrl: './item-battle.scss'
 })
 export class ItemBattle implements OnInit {
-  public items: ItemModel[] = [];
 
   constructor(private itemService: ItemService) {
   }
@@ -18,6 +17,6 @@ export class ItemBattle implements OnInit {
   }
 
   async getDuelantsForPage(): Promise<void> {
-    this.items = await this.itemService.getDuelants();
+    await this.itemService.getDuelants();
   }
 }

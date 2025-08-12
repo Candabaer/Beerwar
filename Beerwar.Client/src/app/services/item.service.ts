@@ -2,15 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environment';
 import { Observable } from 'rxjs';
-import { Client } from '@api/match';
+import {Client, MatchData} from '@api/matchclient';
 
-export interface ItemModel {
-  Name: string;
-  ShortName: string;
-  Description?: string;
-  Rating: number;
-  ImageSource?: string;
-}
 @Injectable({
   providedIn: 'root'
 })
@@ -23,13 +16,10 @@ export class ItemService {
     this.client = new Client(environment.apiBaseUrl);
   }
 
-  async getDuelants(): Promise<ItemModel[]> {
+  async getDuelants() {
 
-    const response = await this.client.create();
-    if (!response.ok) {
-      throw new Error(`HTTP error, getting Duelants failed! status: ${response.status}`);
-    }
-    return response.json();
+    var x : MatchData = await this.client.create();
+
   }
 
 

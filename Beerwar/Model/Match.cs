@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Beerwar.Services.Interfaces.Services;
 
 namespace Beerwar.Model;
@@ -13,8 +14,7 @@ public class Match
         BeerTwo = beerTwo;
         Date = DateTime.Now;
     }
-
-    public int Id { get; init; }
+    public Guid Id { get; set; }
     public DateTime Date { get; init; }
 
     public int? WinnerId { get; set; } = null;
